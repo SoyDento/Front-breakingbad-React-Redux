@@ -58,7 +58,7 @@ export function getCharacters(){
 export function getCharacterDetail(id){
     return function(dispatch) {
       if (id.toString().includes('-')) {
-        return fetch(`http://localhost:3001/characters/${id}`)
+        return fetch(`https://demo1bb.herokuapp.com/characters/${id}`)
         .then(res => res.json())
         .then(res =>{
           let obj = {
@@ -151,7 +151,7 @@ export function getNameChar(name){
 
 export function getOccupations(){
     return function(dispatch){
-        return fetch(`http://localhost:3001/occupations`)
+        return fetch(`https://demo1bb.herokuapp.com/occupations`)
         .then(res => res.json())
         //despachar el objeto al reducer
         .then(json => {  dispatch({type: GET_OCCUPATIONS, payload: json})  })
@@ -162,7 +162,7 @@ export function postCharacters(body){
     return function(dispatch){
         // return axios.post(`https://localhost:3001/postCharacters/`,body)
         // .then(json => {  dispatch({type: POST_CHARACTER, payload: json})  })
-        return fetch(`http://localhost:3001/characters`, {
+        return fetch(`https://demo1bb.herokuapp.com/characters`, {
             method: 'POST', // or 'PUT'
             body: JSON.stringify(body), // data can be `string` or {object}!
             headers:{
@@ -187,7 +187,7 @@ export function getApiChars(){
 export function getDbChars(){
     return function(dispatch) {
         //fetchear la Api en la ruta de las quotes random
-        return fetch(`http://localhost:3001/characters`)
+        return fetch(`https://demo1bb.herokuapp.com/characters`)
         .then(res => res.json())
         .then(res =>{
           let arr = []
@@ -213,7 +213,7 @@ export function getDbChars(){
 export function removeChar (idChar) {
   console.log(idChar);
   return function(dispatch) {
-      return fetch(`http://localhost:3001/removeChar?id=${idChar}`, {
+      return fetch(`https://demo1bb.herokuapp.com/removeChar?id=${idChar}`, {
             method: 'DELETE', // or 'PUT'
             // body: JSON.stringify(idChar), // data can be `string` or {object}!
             headers:{
@@ -235,7 +235,7 @@ export function closeCharacter (idChar) {
 export function changeAtrib (attribute, id, valor) {
   console.log(id); console.log(attribute); console.log(valor);
   return function(dispatch) {
-      return fetch(`http://localhost:3001/${attribute}?idChar=${id}&value=${valor}`, {
+      return fetch(`https://demo1bb.herokuapp.com/${attribute}?idChar=${id}&value=${valor}`, {
             method: 'PUT',
             headers:{ 'Content-Type': 'application/json' }
           })
