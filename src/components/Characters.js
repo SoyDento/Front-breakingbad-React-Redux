@@ -56,7 +56,9 @@ function Characters() {
   };
   const handleFilterCreat = (e) => {
     e.preventDefault();
+    console.log(e.target.value);
     dispatch( filterCreated(e.target.value) );
+    setPage(1);
   };
   const handleSort = (e) => {
     e.preventDefault();

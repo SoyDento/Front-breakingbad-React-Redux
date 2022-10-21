@@ -104,9 +104,9 @@ function rootReducer(state = initialState, action){
     if(action.type === FILTER_CREATED){
       let allChs = state.allCharacters;
       let createdFilter = (action.payload === 'created') ?
-        allChs.filter( (el)=> el.status === 'Presumed dead' ) :
-        allChs.filter( (el)=> el.status === 'Alive' )
-
+        allChs.filter( (el)=> el.char_id.includes('-') ) :
+        allChs.filter( (el)=> !el.char_id.includes('-') )
+ 
         return {
           ...state,
           characters: createdFilter

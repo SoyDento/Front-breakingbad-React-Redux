@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const ADD_QUOTE = "ADD_QUOTE";
 
 export const GET_CHARACTER_DETAIL = 'GET_CHARACTER_DETAIL';
@@ -43,6 +45,7 @@ export function addQuote() {
         .then(res => res.json())
         //despachar el objeto al reducer
         .then(json => {  dispatch({type: ADD_QUOTE, payload: json[0]})  })
+        .catch(error => console.error('Error:', error))
     }
 }
 
@@ -58,8 +61,8 @@ export function getCharacters(){
 export function getCharacterDetail(id){
     return function(dispatch) {
       if (id.toString().includes('-')) {
-        return fetch(`https://demo1bb.herokuapp.com/characters/${id}`)
-        .then(res => res.json())
+        return axios.get(`/characters/${id}`) // https://demo1bb.herokuapp.com
+        .then(res => res.data)
         .then(res =>{
           let obj = {
             char_id: res.id,
@@ -76,11 +79,13 @@ export function getCharacterDetail(id){
         })
         //despachar el objeto al reducer
         .then(json => {  dispatch({type: GET_CHARACTER_DETAIL, payload: json})  })
+        .catch(error => console.error('Error:', error))
       };
         return fetch(`https://www.breakingbadapi.com/api/characters/${id}`)
         .then(res => res.json())
         //despachar el objeto al reducer
         .then(json => {  dispatch({type: GET_CHARACTER_DETAIL, payload: json[0]})  })
+        .catch(error => console.error('Error:', error))
     }
 }
 //====================================//
@@ -98,6 +103,7 @@ export function getEpisodes(){
         .then(res => res.json())
         //despachar el objeto al reducer
         .then(json => {  dispatch({type: GET_EPISODES, payload: json})  })
+        .catch(error => console.error('Error:', error))
     }
 }
 //====================================//
@@ -115,6 +121,7 @@ export function getEpisodeDetail(id){
         .then(res => res.json())
         //despachar el objeto al reducer
         .then(json => {  dispatch({type: GET_EPISODE_DETAIL, payload: json[0]})  })
+        .catch(error => console.error('Error:', error))
     }
 }
 //====================================//
@@ -146,13 +153,14 @@ export function getNameChar(name){
         .then(res => res.json())
         //despachar el objeto al reducer
         .then(json => {  dispatch({type: GET_NAME_CHAR, payload: json})  })
+        .catch(error => console.error('Error:', error))
     }
 }
 
 export function getOccupations(){
     return function(dispatch){
-        return fetch(`https://demo1bb.herokuapp.com/occupations`)
-        .then(res => res.json())
+        return axios.get(`/occupations`) // https://demo1bb.herokuapp.com
+        .then(res => res.data)
         //despachar el objeto al reducer
         .then(json => {  dispatch({type: GET_OCCUPATIONS, payload: json})  })
     }
@@ -160,15 +168,15 @@ export function getOccupations(){
 
 export function postCharacters(body){
     return function(dispatch){
-        // return axios.post(`https://localhost:3001/postCharacters/`,body)
-        // .then(json => {  dispatch({type: POST_CHARACTER, payload: json})  })
-        return fetch(`https://demo1bb.herokuapp.com/characters`, {
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify(body), // data can be `string` or {object}!
-            headers:{
-              'Content-Type': 'application/json'
-            }
-          }).then(res => dispatch({type: POST_CHARACTER, payload: res.json()}) )
+        return axios.post(`/postCharacters`,body)
+          // fetch(`https://demo1bb.herokuapp.com/characters`, {
+          //   method: 'POST', // or 'PUT'
+          //   body: JSON.stringify(body), // data can be `string` or {object}!
+          //   headers:{
+          //     'Content-Type': 'application/json'
+          //   }
+          // })
+          .then(res => dispatch({type: POST_CHARACTER, payload: res.data}) )
           .catch(error => console.error('Error:', error))
           .then(response => console.log('Success:', response));
     }
@@ -187,8 +195,8 @@ export function getApiChars(){
 export function getDbChars(){
     return function(dispatch) {
         //fetchear la Api en la ruta de las quotes random
-        return fetch(`https://demo1bb.herokuapp.com/characters`)
-        .then(res => res.json())
+        return axios.get(`/characters`)  // https://demo1bb.herokuapp.com
+        .then(res => res.data)
         .then(res =>{
           let arr = []
           res.forEach( o=>{
@@ -206,22 +214,21 @@ export function getDbChars(){
           // console.log(arr);
           return arr;
         })
-        .then(json => {  dispatch({type: GET_DB_CHARS, payload: json})  })
+        .then(resp => {  dispatch({type: GET_DB_CHARS, payload: resp})  })
     }
 }
 
 export function removeChar (idChar) {
   console.log(idChar);
   return function(dispatch) {
-      return fetch(`https://demo1bb.herokuapp.com/removeChar?id=${idChar}`, {
-            method: 'DELETE', // or 'PUT'
-            // body: JSON.stringify(idChar), // data can be `string` or {object}!
-            headers:{
-              'Content-Type': 'application/json'
-            }
-          })
-      .then(res => res.json())
-      .then(json => {  dispatch({type: REMOVE_CHAR, payload: json})  })
+      // return fetch(`https://demo1bb.herokuapp.com/removeChar?id=${idChar}`, {
+      //       method: 'DELETE', // or 'PUT'
+      //       headers:{
+      //         'Content-Type': 'application/json'
+      //       }
+      //     })
+     return axios.delete(`/removeChar?id=${idChar}`)
+      .then(json => {  dispatch({type: REMOVE_CHAR, payload: json.data})  })
   }
 }
 
@@ -235,11 +242,12 @@ export function closeCharacter (idChar) {
 export function changeAtrib (attribute, id, valor) {
   console.log(id); console.log(attribute); console.log(valor);
   return function(dispatch) {
-      return fetch(`https://demo1bb.herokuapp.com/${attribute}?idChar=${id}&value=${valor}`, {
-            method: 'PUT',
-            headers:{ 'Content-Type': 'application/json' }
-          })
-      .then(res => res.json())
-      .then(json => {  dispatch({type: CHANGE_AT, payload: json})  })
+      // return fetch(`https://demo1bb.herokuapp.com/${attribute}?idChar=${id}&value=${valor}`, {
+      //       method: 'PUT',
+      //       headers:{ 'Content-Type': 'application/json' }
+      //     })
+      return axios.put(`/${attribute}?idChar=${id}&value=${valor}`)
+      .then(json => {  dispatch({type: CHANGE_AT, payload: json.data
+      })  })
   }
 }
