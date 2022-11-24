@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Front-breakingbad-React-Redux/static/css/main.17209a67.chunk.css",
+    "main.js": "/Front-breakingbad-React-Redux/static/js/main.c6cbe60f.chunk.js",
+    "main.js.map": "/Front-breakingbad-React-Redux/static/js/main.c6cbe60f.chunk.js.map",
+    "runtime-main.js": "/Front-breakingbad-React-Redux/static/js/runtime-main.1a8efc27.js",
+    "runtime-main.js.map": "/Front-breakingbad-React-Redux/static/js/runtime-main.1a8efc27.js.map",
+    "static/js/2.4223ccf8.chunk.js": "/Front-breakingbad-React-Redux/static/js/2.4223ccf8.chunk.js",
+    "static/js/2.4223ccf8.chunk.js.map": "/Front-breakingbad-React-Redux/static/js/2.4223ccf8.chunk.js.map",
+    "static/js/3.5857be03.chunk.js": "/Front-breakingbad-React-Redux/static/js/3.5857be03.chunk.js",
+    "static/js/3.5857be03.chunk.js.map": "/Front-breakingbad-React-Redux/static/js/3.5857be03.chunk.js.map",
+    "index.html": "/Front-breakingbad-React-Redux/index.html",
+    "static/css/main.17209a67.chunk.css.map": "/Front-breakingbad-React-Redux/static/css/main.17209a67.chunk.css.map",
+    "static/js/2.4223ccf8.chunk.js.LICENSE.txt": "/Front-breakingbad-React-Redux/static/js/2.4223ccf8.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/Front-breakingbad-React-Redux/static/media/bg.085908ea.jpg",
+    "static/media/logo.e6ecab44.png": "/Front-breakingbad-React-Redux/static/media/logo.e6ecab44.png",
+    "static/media/spinner.11d9cde8.gif": "/Front-breakingbad-React-Redux/static/media/spinner.11d9cde8.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1a8efc27.js",
+    "static/js/2.4223ccf8.chunk.js",
+    "static/css/main.17209a67.chunk.css",
+    "static/js/main.c6cbe60f.chunk.js"
+  ]
+}
